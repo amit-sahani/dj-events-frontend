@@ -13,16 +13,18 @@ export default function Events({events}) {
      {events.map(evt=>(
        <EventItem key={evt.id} evt={evt}></EventItem>
      ))}
+    
     </Layout>
   )
 }
+
 
 export async function getStaticProps() {
   const res = await fetch(`${API_URL}/api/events`)
   const events =  await res.json()
 
   return {
-    props: {events:events.slice(0,3)},
+    props: {events},
     revalidate: 1
   }
 }
